@@ -18,7 +18,7 @@
     CheckList.prototype.addRow = function(coffeeOrder) {
         var rowElement = new Row(coffeeOrder);
         this.$element.append(rowElement.$element);
-    }.bind(this);
+    };
 
     function Row(coffeeOrder) {
         var $div = $('<div></div>', {
