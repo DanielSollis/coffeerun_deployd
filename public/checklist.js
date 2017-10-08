@@ -1,4 +1,4 @@
-(function (window) {
+(function(window) {
     'use strict';
     var App = window.App || {};
     var $ = window.jQuery;
@@ -18,12 +18,12 @@
     CheckList.prototype.addRow = function(coffeeOrder) {
         var rowElement = new Row(coffeeOrder);
         this.$element.append(rowElement.$element);
-    };
+    }.bind(this);
 
     function Row(coffeeOrder) {
         var $div = $('<div></div>', {
             'data-coffee-order': 'checkbox',
-            'class' : 'checkbox'
+            'class': 'checkbox'
         });
 
         var $label = $('<label></label>');
