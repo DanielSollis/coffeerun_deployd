@@ -14,10 +14,11 @@
     window.myTruck = myTruck;
     var formHandler = new FormHandler(FORM_SELECTOR);
     var checkList = new CheckList(CHECKLIST_SELECTOR);
+    checkList.addClickHandler(myTruck.deliverOrders.bind(myTruck));
     formHandler.addInputHandler(Validation.isCompanyEmail);
     formHandler.addSubmitHandler(function(data) {
         myTruck.createOrder.call(myTruck, data);
-        checkList.addRow.call(CheckList, data);
+        checkList.addRow.call(checkList, data);
     });
     console.log(formHandler);
 })(window);

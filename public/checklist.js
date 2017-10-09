@@ -15,7 +15,20 @@
         }
     }
 
+    CheckList.prototype.addClickHandler = function(fn) {
+        this.$element.on('click', 'input', function(event){
+            var email = event.target.value;
+            this.removeRow(email);
+            fn(email)
+        }.bind(this));
+    };
+
+    CheckList.prototype.removeRow = function(email){
+        this.$element.find('[value="' + email + '"]').closest('[data-coffee-order="checkbox"]').remove();
+    };
+
     CheckList.prototype.addRow = function(coffeeOrder) {
+        this.removeRow(coffeeOrder.emailAddress);
         var rowElement = new Row(coffeeOrder);
         this.$element.append(rowElement.$element);
     };
@@ -37,7 +50,7 @@
         if (coffeeOrder.flavor != '') {
             description += coffeeOrder.flavor + '';
         }
-        description += coffeeOrder.Coffee + '';
+        description += coffeeOrder.Coffee + ' ';
         description += ' (' + coffeeOrder.Email + ')';
         description += ' [' + coffeeOrder.strength + 'x]';
 
