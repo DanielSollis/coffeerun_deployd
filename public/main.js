@@ -15,6 +15,7 @@
     var formHandler = new FormHandler(FORM_SELECTOR);
     var checkList = new CheckList(CHECKLIST_SELECTOR);
     checkList.addClickHandler(myTruck.deliverOrders.bind(myTruck));
+    checkList.addClickHandler(remoteDS.remove);
     formHandler.addInputHandler(Validation.isCompanyEmail);
     formHandler.addSubmitHandler(function(data) {
         myTruck.createOrder.call(myTruck, data);

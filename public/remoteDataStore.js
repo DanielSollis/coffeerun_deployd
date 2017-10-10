@@ -25,7 +25,7 @@
     RemoteDataStore.prototype.getAll = function() {
         dpd.coffeeorders.get(function (result, err) {
             if(err) return console.log(err);
-            console.log(result);
+            return result;
         });
     };
 
@@ -37,8 +37,17 @@
     };
 
     RemoteDataStore.prototype.remove = function(key) {
-        dpd.coffeeorders.del(key, function(err) {
-            if (err) console.log(err);
+        dpd.coffeeorders.get(function (result, err) {
+            if(err) return console.log(err);
+            for (var ord in result) {
+                console.log(result[ord].email);
+                console.log(result[ord].id);
+                if (result[ord].email === key){
+                    dpd.coffeeorders.del(result[ord].id, function (err) {
+                        if(err) console.log(err);
+                    });
+                }
+            }
         });
     };
 
